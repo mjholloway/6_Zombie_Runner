@@ -51,7 +51,7 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackTarget()
     {
-        print("You've been hit!");
+
     }
 
     private void OnDrawGizmosSelected()

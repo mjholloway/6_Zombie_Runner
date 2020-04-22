@@ -403,6 +403,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8c19a618a0bd9844583b91dca0875a34, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5862bbfe91a75054ca72c13b555b6ac5, type: 3}
+--- !u!198 &378706984 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8189710474657468792, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+    type: 3}
+  m_PrefabInstance: {fileID: 2050003880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &444061473
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,6 +770,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FPCamera: {fileID: 1025341860}
   range: 100
+  damage: 10
+  muzzleFlash: {fileID: 378706984}
 --- !u!1 &972978853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,6 +1062,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054644122557447633, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054644122557447633, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+        type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
