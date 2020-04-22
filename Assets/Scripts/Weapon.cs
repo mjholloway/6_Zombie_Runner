@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float range = 100f;
     [SerializeField] float damage = 10f;
     [SerializeField] ParticleSystem muzzleFlash;
+    [SerializeField] GameObject neutralHitFX;
 
     void Update()
     {
@@ -30,7 +31,7 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range))
         {
-            print(hit.collider);
+            CreateNeutralImpactFX(hit);
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
             if (target == null) { return; }
             target.TakeDamage(damage);
@@ -42,7 +43,11 @@ public class Weapon : MonoBehaviour
     private void PlayMuzzleFlash()
     {
         muzzleFlash.Play();
-        print(muzzleFlash.isPlaying);
     }
 
+    private void CreateNeutralImpactFX(RaycastHit hit)
+    {
+        GameObject impact = Instantiate(neutralHitFX, hit.point, Quaternion.identity);
+        Destroy(impact, .5f);
+    }
 }
