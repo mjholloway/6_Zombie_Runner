@@ -25,23 +25,34 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         distanceToTarget = Vector3.Distance(target.position, transform.position);
-        SearchForTarget();
+        if (!isProvoked) { SearchForTarget(); }
     }
 
     private void SearchForTarget()
     {
         if (distanceToTarget <= chaseRange)
         {
-            isProvoked = true;
+            EngageTarget();
         }
-        else if (distanceToTarget > chaseRange)
+        else
         {
-            isProvoked = false;
             animator.ResetTrigger("Move");
         }
-        if (isProvoked)
+    }
+
+    public void OnDamageTaken()
+    {
+        isProvoked = true;
+        ChaseTarget();
+        StartCoroutine(NoticeTarget());
+    }
+
+    private IEnumerator NoticeTarget()
+    {
+        while (isProvoked)
         {
-            EngageTarget();
+            yield return new WaitForSeconds(.5f);
+            if ((distanceToTarget <= chaseRange) || (navMeshAgent.isStopped)) { isProvoked = false; }
         }
     }
 
