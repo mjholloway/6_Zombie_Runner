@@ -11,9 +11,15 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject neutralHitFX;
 
+    PlayerHealth player;
+
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerHealth>();
+    }
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if ((player.isAlive) && (Input.GetButtonDown("Fire1")))
         {
             Shoot();
         }

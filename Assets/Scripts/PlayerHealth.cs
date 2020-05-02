@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public bool isAlive = true;
+
     [SerializeField] float playerHealth = 100f;
 
     public void TakeDamage(float damage)
@@ -11,7 +13,8 @@ public class PlayerHealth : MonoBehaviour
         playerHealth -= damage;
         if (playerHealth <= 0f)
         {
-            print("You died");
+            GetComponent<DeathHandler>().HandleDeath();
+            isAlive = false;
         }
     }
 }
