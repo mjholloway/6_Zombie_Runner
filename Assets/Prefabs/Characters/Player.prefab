@@ -181,6 +181,8 @@ GameObject:
   - component: {fileID: 11400004}
   - component: {fileID: 1151574269}
   - component: {fileID: 1752987678274137116}
+  - component: {fileID: 2627702044276124363}
+  - component: {fileID: 1242444026080835782}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -329,6 +331,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverCanvas: {fileID: 0}
+--- !u!114 &2627702044276124363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97cf3e30d591d94d8e9e8ee1c1c3137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomFov: 30
+  zoomSensitivity: 1
+--- !u!114 &1242444026080835782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530dd79758f9de34ca3a49222f79bbf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoAmount: 10
 --- !u!114 &962882253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +376,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 8189710474657468792}
   neutralHitFX: {fileID: 5219623188550027374, guid: ed92860efc78149468288d36a6d72557,
     type: 3}
+  ammoSlot: {fileID: 1242444026080835782}
 --- !u!1 &6340206134812853867
 GameObject:
   m_ObjectHideFlags: 0
