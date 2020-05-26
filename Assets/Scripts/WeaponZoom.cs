@@ -16,8 +16,8 @@ public class WeaponZoom : MonoBehaviour
 
     private void Start()
     {
-        mainCamera = GetComponentInChildren<Camera>();
-        fpsController = GetComponent<RigidbodyFirstPersonController>();
+        mainCamera = FindObjectOfType<Camera>();
+        fpsController = FindObjectOfType<RigidbodyFirstPersonController>();
     }
 
     private void Update()

@@ -11,8 +11,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject neutralHitFX;
     [SerializeField] Ammo ammoSlot;
+    [SerializeField] float timeBetweenShots = .5f;
 
     PlayerHealth player;
+    bool canShoot = true;
 
     private void Start()
     {
@@ -20,17 +22,24 @@ public class Weapon : MonoBehaviour
     }
     void Update()
     {
-        if ((player.isAlive) && (Input.GetButtonDown("Fire1")) && (ammoSlot.GetAmmo() > 0))
+        if ((player.isAlive) && (Input.GetMouseButtonDown(0)) && (canShoot))
         {
-            Shoot();
+            StartCoroutine(Shoot());
         }
     }
 
-    private void Shoot()
+    private IEnumerator Shoot()
     {
-        PlayMuzzleFlash();
-        ProcessRaycast();
-        ammoSlot.ReduceAmmo();
+        canShoot = false;
+        if (ammoSlot.GetAmmo() > 0)
+        {
+            PlayMuzzleFlash();
+            ProcessRaycast();
+            ammoSlot.ReduceAmmo();
+        }
+        
+        yield return new WaitForSeconds(timeBetweenShots);
+        canShoot = true;
     }
 
     private void ProcessRaycast()
