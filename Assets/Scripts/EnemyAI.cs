@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
     Vector3 targetPos = new Vector3();
+    bool isAlive = true;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         distanceToTarget = Vector3.Distance(target.position, transform.position);
-        if (!isProvoked) { SearchForTarget(); }
+        if (!isProvoked && isAlive) { SearchForTarget(); }
     }
 
     private void SearchForTarget()
@@ -42,6 +43,7 @@ public class EnemyAI : MonoBehaviour
 
     public void OnDamageTaken()
     {
+        if (!isAlive) { return; }
         isProvoked = true;
         ChaseTarget();
         StartCoroutine(NoticeTarget());
@@ -88,6 +90,14 @@ public class EnemyAI : MonoBehaviour
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+    }
+
+    public void OnDeath()
+    {
+        animator.SetTrigger("Dead");
+        animator.ResetTrigger("Move");
+        isAlive = false;
+        navMeshAgent.isStopped = true;
     }
 
     private void OnDrawGizmosSelected()

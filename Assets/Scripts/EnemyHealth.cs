@@ -6,13 +6,18 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] float hitPoints = 100f;
 
+    bool hasDied = false;
+
     public void TakeDamage(float damage)
     {
-        GetComponent<EnemyAI>().OnDamageTaken();
+        if (hasDied) { return; }
+        EnemyAI enemy = GetComponent<EnemyAI>();
+        enemy.OnDamageTaken();
         hitPoints -= damage;
         if (hitPoints <= 0f)
         {
-            Destroy(gameObject);
+            enemy.OnDeath();
+            hasDied = true;
         }
     }
 }
