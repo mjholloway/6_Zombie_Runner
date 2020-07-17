@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoPickup : MonoBehaviour
+public class BatteryPickup : MonoBehaviour
 {
-    [SerializeField] int freshAmmo = 5;
-    [SerializeField] AmmoType ammoType;
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerHealth>() != null)
         {
-            FindObjectOfType<Ammo>().IncreaseAmmo(ammoType, freshAmmo);
+            FlashlightSystem flashlight = FindObjectOfType<FlashlightSystem>();
+            flashlight.RestoreLightAngle(50f);
+            flashlight.RestoreLightIntensity(4f);
             Destroy(gameObject);
         }
     }
